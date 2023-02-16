@@ -1,34 +1,31 @@
 class MyQueue {
-    int front;
-    int end;
-    int[] data;
+    Stack<Integer> stackMain;
+    Stack<Integer> stackTwo;
     public MyQueue() {
-        this.front=0;
-        this.end=-1;
-        this.data=new int[101];
+        this.stackMain= new Stack<Integer>();
+        this.stackTwo= new Stack<Integer>();
     }
     
     public void push(int x) {
-        data[++end]=x;
+        while(!stackMain.isEmpty()){
+            stackTwo.push(stackMain.pop());
+        }
+        stackMain.push(x);
+        while(!stackTwo.isEmpty()){
+            stackMain.push(stackTwo.pop());
+        }
     }
     
     public int pop() {
-        int removedItem = data[front];
-        for(int i=0;i<=end;i++){
-            data[i]=data[i+1];
-        }
-        end--;
-        return removedItem;
+        return stackMain.pop();
     }
     
     public int peek() {
-        return data[front];
+        return stackMain.peek();
     }
     
     public boolean empty() {
-        if(end>-1)
-            return false;
-        return true;
+        return stackMain.isEmpty();
     }
 }
 
