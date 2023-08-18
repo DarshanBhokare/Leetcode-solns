@@ -18,7 +18,7 @@ class Solution {
             
             graph.get(x).add(y);
             graph.get(y).add(x);
-            roads.add(String.valueOf(x) + "," + String.valueOf(y));
+            roads.add(convert(x,y));
             
         }
         
@@ -31,11 +31,11 @@ class Solution {
         
     }
     
-    public int dfs(int city){
+    private int dfs(int city){
         int result=0;
         for(int neighbor: graph.get(city)){
             if(!visited.contains(neighbor)){
-                if(roads.contains(String.valueOf(city)+","+String.valueOf(neighbor))){
+                if(roads.contains(convert(city, neighbor))){
                     result++;
                 }
                 //visited[neighbor]=true;
@@ -45,4 +45,10 @@ class Solution {
         }
         return result;
     }
+    
+    private String convert(int row, int col) {
+        return String.valueOf(row) + "," + String.valueOf(col);
+    }
+    
+    
 }
