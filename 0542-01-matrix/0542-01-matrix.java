@@ -4,43 +4,41 @@ class Solution {
     int m,n;
     
     public int[][] updateMatrix(int[][] mat) {
-        int m = mat.length, n = mat[0].length;
+        m=mat.length;
+        
+        n=mat[0].length;
         Queue<int[]> queue = new LinkedList<>();
-        boolean[][] visited = new boolean[m][n];
-        
-        // Add all zeros to the queue and mark them visited.
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (mat[i][j] == 0) {
-                    queue.offer(new int[]{i, j});
-                    visited[i][j] = true;
+        visited= new boolean[m][n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(mat[i][j]==0){
+                    visited[i][j]=true;
+                    queue.add(new int[]{i,j});
                 }
             }
         }
         
-        // Directions for exploring neighbors (up, down, left, right)
-        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        int[][] directions={{0,1},{0,-1},{1,0},{-1,0}};
         
-        // Start BFS
-        while (!queue.isEmpty()) {
-            int[] cell = queue.poll();
-            int row = cell[0], col = cell[1];
+        while(!queue.isEmpty()){
             
-            // For each neighboring cell
-            for (int[] dir : dirs) {
-                int newRow = row + dir[0], newCol = col + dir[1];
+            int[] pair = queue.remove();
+            int x = pair[0], y=pair[1];
+
+            for(int[] direction: directions){
+                int row=x+direction[0], col=y+direction[1];
                 
-                // If it's a valid cell and not visited
-                if (newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && !visited[newRow][newCol]) {
-                    // Set its value to the current cell's value + 1
-                    mat[newRow][newCol] = mat[row][col] + 1;
-                    queue.offer(new int[]{newRow, newCol});
-                    visited[newRow][newCol] = true;
+                if(isValid(row,col) && !visited[row][col]){
+                   visited[row][col]=true;
+                    mat[row][col]=mat[x][y]+1;
+                    queue.add(new int[]{row,col});
                 }
+                
             }
+            
         }
-        
         return mat;
+        
         
         
     }
