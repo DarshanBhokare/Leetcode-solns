@@ -1,6 +1,6 @@
 class Solution {
     public int numSubarrayProductLessThanK(int[] nums, int k) {
-         if (k <= 1) {
+        if(k<=1){
             return 0;
         }
         int numberOfSubArrays=0;
@@ -16,10 +16,6 @@ class Solution {
             numberOfSubArrays+=right-left+1;
            
         }
-        return numberOfSubArrays;
-        
-        
-        
-        
+        return numberOfSubArrays;    
     }
 }
