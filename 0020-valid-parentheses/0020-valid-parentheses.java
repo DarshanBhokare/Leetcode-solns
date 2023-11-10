@@ -1,36 +1,27 @@
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<Character>();
-        char arr[] = s.toCharArray();
-        for(char c: arr){
-            if(c=='(' || c=='[' || c=='{')
-                stack.push(c);
-            else if(!stack.isEmpty()){
-                if(c==')')
-                    if(stack.peek()=='(')
-                        stack.pop();
-                    else
-                        return false;
-                else if(c=='}')
-                    if(stack.peek()=='{')
-                        stack.pop();
-                    else
-                        return false;
-                else if(c==']')
-                    if(stack.peek()=='[')
-                        stack.pop();
-                    else
-                        return false;
-            }
-            else{
-                if(c==')' || c=='}' || c==']')
+       HashMap<Character, Character> map = new HashMap<>();
+        map.put(')','(' );
+        map.put( ']','[');
+        map.put('}','{' );
+        
+        Stack<Character> stack = new Stack<>();
+        
+        char[] charArray = s.toCharArray();
+        
+        for(char c: charArray){
+            if(map.containsKey(c)){
+                if(stack.isEmpty() || stack.pop()!=map.get(c))
                     return false;
+            }else{
+                stack.push(c);
             }
-
+            
+            
+            
         }
-
+        
         return stack.isEmpty();
-
         
 
     }
