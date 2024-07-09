@@ -1,12 +1,8 @@
 class ParkingSystem {
     
-    //int bigSlots, mediumSlots, smallSlots;
     Map<Integer, Integer> typeToSlotsMap = new HashMap<>();
 
     public ParkingSystem(int big, int medium, int small) {
-        // this.bigSlots=big;
-        // this.mediumSlots=medium;
-        // this.smallSlots=small;
         typeToSlotsMap.put(1, big);
         typeToSlotsMap.put(2, medium);
         typeToSlotsMap.put(3, small);
