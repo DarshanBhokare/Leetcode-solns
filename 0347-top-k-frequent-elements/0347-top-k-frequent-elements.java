@@ -22,8 +22,6 @@ class Solution {
         int[] result = new int[k];
         
         for(int index=0;index<k;index++){
-            System.out.println(topKFrequencies.toString());
-            System.out.println(index);
             result[index] = topKFrequencies.remove();
         }
         
