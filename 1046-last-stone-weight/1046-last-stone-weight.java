@@ -16,7 +16,7 @@ class Solution {
             
         }
         
-        return stoneWeights.size() == 0 ? 0 : stoneWeights.peek();
+        return stoneWeights.size() == 0 ? 0 : stoneWeights.remove();
         
     }
 }
